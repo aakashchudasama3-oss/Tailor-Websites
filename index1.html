@@ -1,0 +1,794 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Maruti Tailors & Cloth - Premium Men's Fashion</title>
+    <meta name="description" content="Maruti Tailors & Cloth - Premium men's clothing and tailoring services. Discover our latest collection of ethnic wear, casual wear, and custom tailoring.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-black: #000;
+            --soft-black: #1a1a1a;
+            --gray: #666;
+            --light-gray: #f5f5f5;
+            --white: #fff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--soft-black);
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 5%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-black);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--soft-black);
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        .nav-links a:hover {
+            color: var(--gray);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-black);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--primary-black);
+            transition: all 0.3s;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(135deg, #000 0%, #2d2d2d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><rect width="100" height="100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></svg>');
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(50px, 50px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            letter-spacing: 3px;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            padding: 1rem 3rem;
+            background: var(--white);
+            color: var(--primary-black);
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 50px;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(255,255,255,0.3);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 3rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Highlights Section */
+        .highlights {
+            background: var(--light-gray);
+        }
+
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        .highlight-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-black);
+        }
+
+        .highlight-card p {
+            color: var(--gray);
+        }
+
+        /* Gallery Section */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 3/4;
+            background: var(--light-gray);
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gallery-item:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .gallery-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 60%, rgba(0,0,0,0.7));
+            z-index: 1;
+        }
+
+        .gallery-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: var(--white);
+            font-size: 1.2rem;
+            font-weight: 600;
+            z-index: 2;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .placeholder-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
+            color: var(--gray);
+            opacity: 0.3;
+        }
+
+        /* Shop Details Section */
+        .shop-details {
+            background: var(--primary-black);
+            color: var(--white);
+        }
+
+        .shop-details .section-title {
+            color: var(--white);
+        }
+
+        .details-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-item h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .detail-item p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.8;
+        }
+
+        .whatsapp-button {
+            display: inline-block;
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            background: #25D366;
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .whatsapp-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(37,211,102,0.4);
+        }
+
+        /* Reviews Section */
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .review-card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .stars {
+            color: #ffa500;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .review-text {
+            color: var(--gray);
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .reviewer-name {
+            font-weight: 600;
+            color: var(--primary-black);
+        }
+
+        /* About Section */
+        .about {
+            background: var(--light-gray);
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .about-content p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: var(--gray);
+            margin-bottom: 1.5rem;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--soft-black);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            padding: 1rem;
+            border: 2px solid var(--light-gray);
+            border-radius: 5px;
+            font-family: inherit;
+            transition: border 0.3s;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-black);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .submit-button {
+            padding: 1rem 2rem;
+            background: var(--primary-black);
+            color: var(--white);
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-button:hover {
+            background: var(--soft-black);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .map-container {
+            border-radius: 10px;
+            overflow: hidden;
+            height: 100%;
+            min-height: 400px;
+        }
+
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: var(--primary-black);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--primary-black);
+            color: var(--white);
+            text-align: center;
+            padding: 2rem 5%;
+        }
+
+        footer p {
+            opacity: 0.8;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                flex-direction: column;
+                background: var(--white);
+                width: 100%;
+                padding: 2rem;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+                transition: left 0.3s;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 3rem 5%;
+            }
+
+            .gallery-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+			<h1><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAMCAgMCAgMDAwMEAwMEBQgFBQQEBQoHBwYIDAoMDAsKCwsNDhIQDQ4RDgsLEBYQERMUFRUVDA8XGBYUGBIUFRQBAwQEBQUGCQUGChQJCw0LFBMOFBQUDw4NDxQUFBQUDwoQCQsODxQMCRQUFBQUFBIVChQSFBETFA4NChELFBQRFP/AABEIACgAKAMBEQACEQEDEQH/xAAZAAADAQEBAAAAAAAAAAAAAAAABggJBQH/xAArEAACAQIFAwMDBQAAAAAAAAABAgMEBQAGBxESCBMhCTFBFBWCIzJRUmL/xAAXAQEAAwAAAAAAAAAAAAAAAAAAAQUH/8QALREAAQMCAQgLAAAAAAAAAAAAAAECEQMEQQYSExUhUYGhBRYiMUJSYXGCsfD/2gAMAwEAAhEDEQA/ANUMAKOqeq+V9F8oTZnzfcWtlnjmhpu5HTyVEjyyuEjRIolZ3YsR4VT8n2BwB15MzUkWYY7QVk7zoWMwA7at42QnffkQwPtsNwCQWQNE4EwsTh+2TvOVp3qrlfVekvNTla6Lc47NdKiy3ACN42p6yAgSxMrgHcbjz7EEEEg4kgbMAGAM8PU4zqlVrV05ZDqaW709JNmqjuj1LdoWypX6hIWX5czRBv8AKhZ/IYsOIFM3K929etKzWc0yCoGSqlu58M0lYjhdv5AhdvzxTOqN1g1mOhX7TZyNIo2dXqjWup7OsWJG6KTpdxz0TgSt6f8Ans2vrg6oMlx0l5q4rhma5XHvwsht9J2a6dSZFbZlkYyKoKk8tvK7KGFyZuaP4AMATj169Ok3UToHcaSypImd8vv96y7PTtwm+qiG5iRgRsZF3QeQA/Bj+3AEyWnqRseYZbJ1X3GsEdqs+VpKSvtcMo5/f1BpxbuI3IWX6hZkP9N3biFOKJ9m9ekG3XhSnz7o9tsmpW+UltTyRr9BwmlddtX4wjtIi+ZHMzV9HIUD6eehlfplpHW51zXBx1E1GrGzJfHePhJEJmaSGAggFeIkZ2U+VeVx8DF6ZaVRgDwnYE4ASafNF+4xSypQvH2KGodEgkUkVErIyglzsUC777ed/YYAma+enBkC76n3O4VNRVSU1/vkWcK2zkBra1XTM6mLtMC3alNbKzpz+Aq8V8YApWHP3earFTf7BZ5YKqenNJXH9VRHKyB23lXbmFDjx7MPJ9yA94AMAGADABvgAwB//9k=" alt=""></h1>
+            <div class="logo">  Maruti Tailors & Cloth</div>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#collection">Collection</a></li>
+                <li><a href="#shop-details">Shop Details</a></li>
+                <li><a href="#reviews">Reviews</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="menu-toggle" id="menuToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>MARUTI TAILORS & CLOTH</h1>
+            <p>Premium Men's Fashion & Custom Tailoring</p>
+            <a href="#collection" class="cta-button">Explore Collection</a>
+        </div>
+    </section>
+
+    <!-- Highlights Section -->
+    <section class="highlights">
+        <h2 class="section-title">Why Choose Us</h2>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <h3>Latest Collection</h3>
+                <p>Stay ahead with our trendsetting designs and fresh arrivals</p>
+            </div>
+            <div class="highlight-card">
+                <h3>Trending Styles</h3>
+                <p>Contemporary fashion that matches your lifestyle</p>
+            </div>
+            <div class="highlight-card">
+                <h3>Custom Tailoring</h3>
+                <p>Perfect fit guaranteed with expert craftsmanship</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection/Gallery Section -->
+    <section id="collection">
+        <h2 class="section-title">Our Collection</h2>
+        <div class="gallery-grid">
+            <div class="gallery-item">
+                <div class="placeholder-text">📷</div>
+                <div class="gallery-label">Ethnic Wear</div>
+            </div>
+            <div class="gallery-item">
+                <div class="placeholder-text">📷</div>
+                <div class="gallery-label">Formal Wear</div>
+            </div>
+            <div class="gallery-item">
+                <div class="placeholder-text">📷</div>
+                <div class="gallery-label">Party Wear</div>
+            </div>
+            <div class="gallery-item">
+                <div class="placeholder-text">📷</div>
+                <div class="gallery-label">Wedding Collection</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Shop Details Section -->
+    <section id="shop-details" class="shop-details">
+        <h2 class="section-title">Visit Our Shop</h2>
+        <div class="details-container">
+            <div class="detail-item">
+                <h3>Location</h3>
+                <p>Maruti Tailors & Cloth<br>
+                FF-11/12 Aarohi Arcade, Bopal<br>
+                Ahmedabad, Gujarat - 380058</p>
+            </div>
+            <div class="detail-item">
+                <h3>Contact Us</h3>
+                <p>Phone: +91 98240 02405<br>
+                Email: infomtcbb@gmail.com</p>
+                <a href="https://wa.me/916359422490" class="whatsapp-button" target="_blank">Chat on WhatsApp</a>
+            </div>
+            <div class="detail-item">
+                <h3>Opening Hours</h3>
+                <p>Monday - Sunday<br>
+                09:00 AM - 09:00 PM<br><br>
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews">
+        <h2 class="section-title">What Our Customers Say</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Excellent quality and perfect fitting. The staff is very professional and helpful. Highly recommended!"</p>
+                <p class="reviewer-name">- Customer Name</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Best tailoring experience in the city. Amazing collection and custom stitching is top-notch!"</p>
+                <p class="reviewer-name">- Customer Name</p>
+            </div>
+            <div class="review-card">
+                <div class="stars">★★★★★</div>
+                <p class="review-text">"Great variety of fabrics and designs. The tailors really understand what looks good and fits well."</p>
+                <p class="reviewer-name">- Customer Name</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <h2 class="section-title">About Maruti Tailors</h2>
+        <div class="about-content">
+            <p>Since 2003, our tailor shop has been dedicated to delivering exceptional bespoke tailoring and alterations. We focus on creating garments that reflect your style and fit perfectly. With a blend of traditional craftsmanship and modern design, our skilled team transforms high-quality fabrics into stunning pieces just for you. Experience the art of tailoring with us, where your vision becomes a reality!</p>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2 class="section-title">Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-form">
+                <div class="form-group">
+                    <label>Name</label>
+                    <input type="text" placeholder="Your Name">
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" placeholder="your@email.com">
+                </div>
+                <div class="form-group">
+                    <label>Phone</label>
+                    <input type="tel" placeholder="+91 XXXXX XXXXX">
+                </div>
+                <div class="form-group">
+                    <label>Message</label>
+                    <textarea placeholder="Your message..."></textarea>
+                </div>
+                <button class="submit-button">Send Message</button>
+            </div>
+            <div class="map-container">
+                <!-- Replace with your actual Google Maps embed code -->
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d235013.74843411053!2d72.41493108358554!3d23.020474254004845!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x395e848aba5bd449%3A0x4fcedd11614f6516!2sAhmedabad%2C%20Gujarat!5e0!3m2!1sen!2sin!4v1234567890123!5m2!1sen!2sin" allowfullscreen loading="lazy"></iframe>
+            </div>
+        </div>
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">📷</a>
+            <a href="#" aria-label="Twitter">🐦</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Maruti Tailors & Cloth. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menuToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close menu when clicking on a link
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // Smooth Scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 70;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Form Submission (UI Only)
+        document.querySelector('.submit-button').addEventListener('click', (e) => {
+            e.preventDefault();
+            alert('This is a demo form. In production, this would send your message.');
+        });
+
+        // Navbar scroll effect
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            const currentScroll = window.pageYOffset;
+            
+            if (currentScroll > 100) {
+                nav.style.padding = '0.5rem 5%';
+            } else {
+                nav.style.padding = '1rem 5%';
+            }
+            
+            lastScroll = currentScroll;
+        });
+    </script>
+</body>
+</html>
